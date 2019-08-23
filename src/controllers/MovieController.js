@@ -1,8 +1,9 @@
 const Movies = require ('../models/Movies');
+const Genres = require ('../models/Genres');
 
 module.exports = {
     async store (req, res) {
-        const {name, year} = req.body;
+        const {name, year, genres} = req.body;
 
         console.log(name, year);
 
@@ -13,6 +14,8 @@ module.exports = {
         }
         
         const movie = await Movies.findOrCreate ({where : {name, year}});
+
+        // 
 
         return res.json(movie);
     },
