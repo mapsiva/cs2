@@ -1,4 +1,6 @@
-const Genres = require ('../models/Genres');
+'use strict'
+
+const {Genre} = require ('../models');
 
 module.exports = {
     async store (req, res) {
@@ -12,13 +14,13 @@ module.exports = {
             });
         }
         
-        const genre = await Genres.findOrCreate ({where : {name}});
+        const genre = await Genre.findOrCreate ({where : {name}});
 
         return res.json(genre);
     },
 
     async index (req, res) {
-        const genres = await Genres.findAll ();
+        const genres = await Genre.findAll ();
 
         return res.json (genres);
     },
@@ -28,13 +30,13 @@ module.exports = {
 
         if (!id) return res.json ({'error' : 'ID is missing!'});
 
-        let genre = await Genres.findByPk (id);
+        let genre = await Genre.findByPk (id);
 
         if(!genre) return res.json ({'error' : 'Genre not found!'});
 
-        await Genres.update ({name}, {where :{id}});
+        await Genre.update ({name}, {where :{id}});
 
-        genre = await Genres.findByPk (id);
+        genre = await Genre.findByPk (id);
 
         return res.json (genre);
     },
@@ -44,7 +46,7 @@ module.exports = {
         
         if (!id) return res.json ({'error' : 'ID is missing!'});
 
-        let genre = await Genres.findByPk (id);
+        let genre = await Genre.findByPk (id);
 
         if(!genre) return res.json ({'error' : 'Genre not found!'});
 
