@@ -24,7 +24,7 @@ module.exports = {
             msg: 'Ops, this email already exists...',
           },
       },
-      password:{
+      password_hash:{
         type: Sequelize.STRING,
         allowNull: false
       },
