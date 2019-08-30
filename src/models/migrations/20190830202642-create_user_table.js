@@ -2,8 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    
-    return queryInterface.createTable ('movies', {
+    return queryInterface.createTable ('users', {
       id : {
         type: Sequelize.INTEGER, 
         autoIncrement: true,
@@ -14,8 +13,20 @@ module.exports = {
           allowNull: false,
           unique: true
       },
-      year: {
-          type: Sequelize.INTEGER
+      email: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          validate: {
+            isEmail: true
+          },
+          unique: {
+            name: 'users_email', // Nome do indice
+            msg: 'Ops, this email already exists...',
+          },
+      },
+      password:{
+        type: Sequelize.STRING,
+        allowNull: false
       },
       created_at: {
         type: Sequelize.DATE,
@@ -31,6 +42,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('movies');
+    return queryInterface.dropTable('users');
   }
 };

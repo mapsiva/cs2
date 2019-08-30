@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Movie.associate =  (models) => {
-        console.log ('Associate');
+        
         Movie.belongsToMany(models.Genre, {
            through: 'movie_genre',
            as : 'genres',
