@@ -4,7 +4,6 @@ const faker = require ('faker');
 module.exports = {
   up: (queryInterface, Sequelize) => {
 
-    console.log ('up');
 
     let fakeUsers = [];
 
@@ -12,7 +11,7 @@ module.exports = {
       fakeUsers.push ({
         name: faker.name.findName(),
         email: faker.internet.email (),
-        password: faker.internet.password()
+        password_hash: faker.internet.password()
       });
     }
     console.log (fakeUsers);
