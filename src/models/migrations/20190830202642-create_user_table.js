@@ -1,30 +1,30 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable ('users', {
-      id : {
-        type: Sequelize.INTEGER, 
+    return queryInterface.createTable("users", {
+      id: {
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true
       },
       name: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          unique: true
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       email: {
-          type: Sequelize.STRING,
-          allowNull: false,
-          validate: {
-            isEmail: true
-          },
-          unique: {
-            name: 'users_email', // Nome do indice
-            msg: 'Ops, this email already exists...',
-          },
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isEmail: true
+        },
+        unique: {
+          name: "users_email", // Nome do indice
+          msg: "Ops, this email already exists..."
+        }
       },
-      password_hash:{
+      password_hash: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -42,6 +42,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable("users");
   }
 };

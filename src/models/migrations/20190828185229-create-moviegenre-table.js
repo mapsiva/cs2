@@ -1,30 +1,30 @@
-'use strict';
+"use strict";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable ('movie_genre', {
+    return queryInterface.createTable("movie_genre", {
       movie_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onDelete: 'CASCADE',
+        onDelete: "CASCADE",
         references: {
-          model: 'movies',
-          key: 'id'
+          model: "movies",
+          key: "id"
         }
       },
       genre_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onDelete: 'CASCADE',
+        onDelete: "CASCADE",
         references: {
-          model: 'genres',
-          key: 'id'
+          model: "genres",
+          key: "id"
         }
       }
     });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('movie_genre');
+    return queryInterface.dropTable("movie_genre");
   }
 };
