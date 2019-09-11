@@ -22,7 +22,7 @@ module.exports = {
 
     return res.json({
       message: "User created successfully!",
-      jwt: await user.generateToken()
+      jwt: user.generateToken()
     });
   },
 

@@ -10,19 +10,11 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-          isEmail: true
-        },
-        unique: {
-          name: "users_email", // Nome do indice
-          msg: "Ops, this email already exists..."
-        }
+        allowNull: false
       },
       password_hash: {
         type: Sequelize.STRING,
