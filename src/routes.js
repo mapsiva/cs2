@@ -1,18 +1,12 @@
 const express = require("express");
+const cors = require("cors");
 const MovieController = require("./controllers/MovieController");
 const GenreController = require("./controllers/GenreController");
 const UserController = require("./controllers/UserController");
 
 const routes = express.Router();
 
-routes.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+routes.use(cors());
 
 routes.post("/movies", MovieController.store);
 routes.get("/movies", MovieController.index);
@@ -28,5 +22,7 @@ routes.post("/users", UserController.store);
 routes.get("/users", UserController.index);
 routes.put("/users/:id", UserController.update);
 routes.delete("/users/:id", UserController.delete);
+
+routes.post("/login", UserController.login);
 
 module.exports = routes;

@@ -68,5 +68,22 @@ module.exports = {
     user.destroy();
 
     return res.json({ message: "sucess" });
+  },
+  async login(req, res) {
+    const { password, email } = req.body;
+
+    console.log(req.body);
+
+    if (!email || !password)
+      return res.json({ error: "E-mail/Password is missing!" });
+
+    let user = await User.findOne({ where: { email } });
+
+    if (!user) return res.json({ error: "User not found!" });
+
+    if (!(await user.checkPassword(password))) {
+      return res.json({ error: "Wrong password or email!" });
+    }
+    return res.json({ token: user.generateToken() });
   }
 };

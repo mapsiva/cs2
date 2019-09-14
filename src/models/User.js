@@ -55,8 +55,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  User.prototype.checkPassword = function(password) {
-    return bcrypt.compare(password, this.password_hash);
+  User.prototype.checkPassword = async function(password) {
+    return await bcrypt.compare(password, this.password_hash);
   };
 
   User.prototype.generateToken = function() {
